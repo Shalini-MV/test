@@ -1,52 +1,62 @@
+**Customer-Billing-and-Rewards-Service**
+
+**Technical Specifications**
+
 JDK Version: 11
 Data Storage: H2
 
-Run Project Steps:
+**Project Setup Guidelines**
 
-Download and import the project as an Maven project.
-Open git bash and go to the 'customer-rewards-service' directory. Use 'ls' to check files in this folder.
-Execute 'mvn clean install'.
-To start the app, run 'docker-compose up' in git bash.
-Check App Health:
+Download and set up the Maven project.
+Open git bash and change to the directory customer-rewards-service.
+Use the ls command to list all files within the directory.
+Execute mvn clean install to build the project.
+To launch the application, run docker-compose up from git bash.
 
-App Health: http://localhost:8080/actuator/health
-API Documentation: http://localhost:8080/swagger-ui/
+**Verifying the Application**
 
-***Project Artifacts Folder:
+Health Check: App Health Status
+API Documentation: Swagger UI
+Project Artifacts Folder
 
-Contains Class and Sequence Diagrams.
-Provides json files for Customers, Transactions, Monthly and Quarterly Reports. These can be downloaded via the swagger UI.
-Model Explanation:
+The project-artifacts folder contains:
 
-Customer: Basic profile info.
-Transaction: Monthly transaction details, linked to Customer. Reward points are calculated before saving.
-APIs:
+Class and Sequence Diagrams
+JSON files for Customers, Transactions, and Monthly and Quarterly Reports. These are obtainable through the Swagger UI.
 
-CRUD operations available for Customer and Transaction.
-RewardSummaryController has APIs for monthly and quarterly reports. The 'month' or 'quarter' is taken as an input parameter.
-Performance:
+**Domain Models**
 
-Quarterly reports use parallel streams for better performance.
-Further Considerations:
+Customer: Houses basic customer information.
+Transaction: Contains monthly transaction data, and has a Many-to-One relationship with Customer. Reward points are calculated before saving a transaction.
 
-Break service into 'customer-service' and 'billing-service' for more complex domains.
-Monthly and Quarterly reports are not saved in the database.
-Consider caching to improve performance.
-No DTO Transformation Done.
+**API Controllers**
 
-API Endpoints:
+CRUD operations are available via CustomerController and TransactionController.
+RewardSummaryController has APIs for both monthly and quarterly reports, accepting 'month' and 'quarter' as parameters.
 
-Create Customer: POST http://localhost:8080/rewards/api/v1/customers
-Example Request and Response provided.
-List Customers: GET http://localhost:8080/rewards/api/v1/customers
-Example Response provided.
-Create Transaction: POST http://localhost:8080/rewards/api/v1/transactions
-Example Request and Response provided.
-Monthly Report: GET http://localhost:8080/rewards/api/v1/monthlyreport?month=february
-Example Response provided.
-Quarterly Report: GET http://localhost:8080/rewards/api/v1/quarterlyreport?quarter=first
-Example Response provided.
-Note:
+**Performance**
 
-View all available endpoints at: localhost:8080/swagger-ui/
-Refer to '/tree/main/project-artifacts' for additional resources.
+The quarterly report functionality utilizes parallelStream for efficiency.
+Performance should be benchmarked, especially for handling large datasets.
+
+**Service Architecture Considerations**
+
+For complex models involving more tables, the service could be split into customer-service and billing-service.
+**Data Persistence and Caching**
+
+Reports are not saved to the database by default. This can be updated if needed.
+Consider using local or centralized caching to avoid repeated database calls for generating reports.
+Note: DTO transformation is not implemented in this project.
+
+**API Endpoints and Examples**
+
+Create Customer Endpoint: POST Example Request and Response
+List All Customers: GET Example Response
+Create Transaction Endpoint: POST Example Request and Response
+Monthly Reports: GET Example Response
+Quarterly Reports: GET Example Response
+
+**Additional Information**
+
+After the app is active, you can view all available endpoints at: Swagger UI
+For more details like diagrams and endpoint responses, refer to the project-artifacts directory.
