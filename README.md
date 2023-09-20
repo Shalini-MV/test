@@ -1,22 +1,24 @@
 JDK Version: 11
 Data Storage: H2
 
-**Run Project Steps:
+Run Project Steps:
 
 Download and import the project as an Maven project.
-Open git bash and go to the directory. Use 'ls' to check files in this folder.
+Open git bash and go to the 'customer-rewards-service' directory. Use 'ls' to check files in this folder.
 Execute 'mvn clean install'.
 To start the app, run 'docker-compose up' in git bash.
 Check App Health:
-**
+
 App Health: http://localhost:8080/actuator/health
 API Documentation: http://localhost:8080/swagger-ui/
-Project Artifacts Folder:
+
+***Project Artifacts Folder:
 
 Contains Class and Sequence Diagrams.
 Provides json files for Customers, Transactions, Monthly and Quarterly Reports. These can be downloaded via the swagger UI.
 Model Explanation:
-**Customer: Basic profile info.
+
+Customer: Basic profile info.
 Transaction: Monthly transaction details, linked to Customer. Reward points are calculated before saving.
 APIs:
 
@@ -32,7 +34,7 @@ Monthly and Quarterly reports are not saved in the database.
 Consider caching to improve performance.
 No DTO Transformation Done.
 
-**API Endpoints:
+API Endpoints:
 
 Create Customer: POST http://localhost:8080/rewards/api/v1/customers
 Example Request and Response provided.
@@ -44,7 +46,7 @@ Monthly Report: GET http://localhost:8080/rewards/api/v1/monthlyreport?month=feb
 Example Response provided.
 Quarterly Report: GET http://localhost:8080/rewards/api/v1/quarterlyreport?quarter=first
 Example Response provided.
-** Note:
+Note:
 
 View all available endpoints at: localhost:8080/swagger-ui/
-Refer to 'project-artifacts' for additional resources.
+Refer to '/tree/main/project-artifacts' for additional resources.
